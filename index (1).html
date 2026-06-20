@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charwood &mdash; Smash burgers, fast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: #1A1714;
+  --bg-2: #221D18;
+  --cream: #F2E9DC;
+  --cream-dim: #B8AC99;
+  --char: #FF5A1F;
+  --mustard: #F4B400;
+  --line: rgba(242,233,220,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--cream);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+.display{
+  font-family:'Anton',sans-serif;
+  text-transform:uppercase;
+  letter-spacing:0.01em;
+  line-height:0.92;
+}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+/* NAV */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 6vw;
+  background:rgba(26,23,20,0.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.logo{
+  font-family:'Anton',sans-serif;
+  font-size:20px;
+  letter-spacing:0.04em;
+}
+.logo span{color:var(--char);}
+.nav-links{display:flex; gap:8px; font-size:14px; font-weight:500;}
+.nav-links a{
+  opacity:0.75; transition:opacity 0.2s, background 0.2s;
+  padding:10px 14px; border-radius:4px; display:inline-block;
+}
+.nav-links a:hover{opacity:1; background:var(--bg-2);}
+.nav-links a.active{opacity:1; color:var(--char);}
+.nav-cta{
+  background:var(--char);
+  color:var(--bg);
+  padding:11px 20px;
+  border-radius:4px;
+  font-weight:700;
+  font-size:14px;
+  white-space:nowrap;
+}
+
+.nav-toggle{
+  display:none;
+  background:none; border:none; color:var(--cream);
+  font-size:26px; line-height:1; padding:6px 10px; cursor:pointer;
+}
+@media (max-width:820px){
+  .nav-links{
+    position:fixed; top:64px; left:0; right:0;
+    background:var(--bg); border-bottom:1px solid var(--line);
+    flex-direction:column; gap:0; padding:8px 6vw 16px;
+    transform:translateY(-8px); opacity:0; pointer-events:none;
+    transition:opacity 0.18s, transform 0.18s;
+  }
+  .nav-links.open{ transform:translateY(0); opacity:1; pointer-events:auto; }
+  .nav-links a{ padding:14px 8px; width:100%; border-bottom:1px solid var(--line); border-radius:0; }
+  .nav-toggle{ display:block; }
+  .nav-cta{ display:none; }
+  .nav-links .nav-cta-mobile{
+    display:block; background:var(--char); color:var(--bg); text-align:center;
+    margin-top:8px; border-radius:4px; border-bottom:none; opacity:1;
+  }
+}
+
+section{ padding:96px 6vw; }
+@media (max-width:760px){ section{ padding:64px 6vw; } }
+
+.eyebrow{
+  color:var(--char);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  margin-bottom:18px;
+  display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before{ content:''; width:28px; height:2px; background:var(--char); flex-shrink:0; }
+
+.btn-primary{
+  background:var(--char);
+  color:var(--bg);
+  padding:16px 32px;
+  border-radius:4px;
+  font-weight:700;
+  font-size:15px;
+  display:inline-block;
+  transition:transform 0.15s ease;
+  text-align:center;
+}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-primary:active{transform:translateY(0);}
+.btn-ghost{
+  font-size:15px;
+  font-weight:600;
+  border-bottom:2px solid var(--cream-dim);
+  padding-bottom:4px;
+  transition:border-color 0.2s;
+  display:inline-block;
+}
+.btn-ghost:hover{border-color:var(--cream);}
+
+.page-hero{
+  padding-top:150px;
+  padding-bottom:56px;
+}
+@media (max-width:760px){ .page-hero{ padding-top:120px; padding-bottom:36px; } }
+.page-hero h1.display{ font-size:clamp(40px,9vw,80px); margin-bottom:14px; }
+.page-hero p{ color:var(--cream-dim); font-size:16px; max-width:480px; line-height:1.6; }
+
+footer{
+  padding:28px 6vw;
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:13px; color:var(--cream-dim);
+  border-top:1px solid var(--line);
+  flex-wrap:wrap; gap:10px;
+}
+
+@media (hover:none){
+  a, button{ min-height:40px; }
+}
+
+</style>
+<style>
+  .hero{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    align-items:center;
+    padding:0 6vw;
+    position:relative;
+  }
+  .hero-copy{padding-top:90px;}
+  h1.display{ font-size:clamp(54px, 8vw, 104px); margin-bottom:24px; }
+  h1.display .outline{ color:transparent; -webkit-text-stroke:2px var(--cream); }
+  .hero-sub{ font-size:18px; color:var(--cream-dim); max-width:420px; margin-bottom:36px; line-height:1.6; }
+  .hero-actions{display:flex; gap:16px; align-items:center; flex-wrap:wrap;}
+
+  .burger-stage{
+    position:relative; height:560px;
+    display:flex; align-items:center; justify-content:center;
+    perspective:1200px;
+  }
+  .burger-float{
+    width:340px; height:340px;
+    position:relative;
+    transform-style:preserve-3d;
+    animation: float 5s ease-in-out infinite;
+  }
+  .burger{
+    width:340px; height:340px; position:relative;
+    transform-style:preserve-3d;
+    transform: rotateX(28deg) rotateZ(0deg);
+    transform-origin: center center;
+    transition: transform 0.2s ease-out;
+  }
+  @keyframes float{ 0%,100%{transform:translateY(0px);} 50%{transform:translateY(-14px);} }
+  .bun-top{ background:radial-gradient(circle at 35% 30%, #E8A23D, #C97A1F 70%); height:120px; border-radius:150px 150px 50px 50px / 110px 110px 40px 40px; z-index:50; position:absolute; left:50%; top:50%; width:300px; transform:translate(-50%,-50%) translateZ(120px); }
+  .seed{ position:absolute; width:6px; height:10px; background:#FCE7B8; border-radius:50%; }
+  .lettuce{ background:#6FA13B; height:34px; z-index:40; position:absolute; left:50%; top:50%; width:300px; transform:translate(-50%,-50%) translateZ(96px); border-radius:46% 54% 50% 50% / 60% 60% 40% 40%; box-shadow:0 4px 0 rgba(0,0,0,0.25); }
+  .cheese{ background:var(--mustard); height:26px; z-index:30; position:absolute; left:50%; top:50%; width:320px; transform:translate(-50%,-50%) translateZ(74px); clip-path:polygon(8% 0, 92% 0, 100% 100%, 0 100%); }
+  .patty{ background:radial-gradient(circle at 40% 35%, #6B4128, #3E2415 75%); height:40px; z-index:20; position:absolute; left:50%; top:50%; width:300px; transform:translate(-50%,-50%) translateZ(46px); box-shadow:0 4px 0 rgba(0,0,0,0.3); }
+  .bun-bottom{ background:radial-gradient(circle at 35% 25%, #D89645, #B06D1C 75%); height:54px; border-radius:40px 40px 70px 70px / 30px 30px 60px 60px; z-index:10; position:absolute; left:50%; top:50%; width:300px; transform:translate(-50%,-50%) translateZ(0px); }
+  .glow{ position:absolute; width:380px; height:380px; left:50%; top:55%; transform:translate(-50%,-50%); background:radial-gradient(circle, rgba(255,90,31,0.18), transparent 70%); z-index:1; }
+
+  .banner{ background:var(--char); color:var(--bg); padding:20px 0; overflow:hidden; white-space:nowrap; }
+  .banner-track{ display:inline-flex; gap:48px; animation:scroll 22s linear infinite; font-family:'Anton',sans-serif; font-size:20px; text-transform:uppercase; letter-spacing:0.02em; }
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  .teaser{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .teaser-item{ background:var(--bg); padding:32px 28px; transition:background 0.2s; }
+  .teaser-item:hover{ background:var(--bg-2); }
+  .teaser-item h3{ font-size:20px; font-weight:700; margin-bottom:8px; }
+  .teaser-item p{ font-size:14px; color:var(--cream-dim); line-height:1.55; margin-bottom:14px; }
+
+  .cta-block{ text-align:center; border-top:1px solid var(--line); }
+  .cta-block h2.display{ font-size:clamp(42px,8vw,90px); margin-bottom:32px; }
+
+  @media (max-width:900px){
+    .hero{ grid-template-columns:1fr; min-height:auto; padding-bottom:40px; }
+    .hero-copy{ padding-top:120px; text-align:center; }
+    .eyebrow{ justify-content:center; }
+    .hero-sub{ margin-left:auto; margin-right:auto; }
+    .hero-actions{ justify-content:center; }
+    .burger-stage{ height:320px; }
+    .burger-float, .burger{ width:220px; height:220px; }
+    .bun-top, .lettuce, .cheese, .patty, .bun-bottom{ width:200px !important; }
+  }
+  @media (max-width:760px){ .teaser{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">CHAR<span>WOOD</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" class="active">Home</a>
+    <a href="menu.html" class="">Menu</a>
+    <a href="location.html" class="">Location</a>
+    <a href="order.html" class="">Order</a>
+    <a href="order.html" class="nav-cta-mobile">Order now</a>
+  </div>
+  <a href="order.html" class="nav-cta">Order now</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">Smash burgers, fired fast</div>
+    <h1 class="display">Hit the<br>char<span class="outline">.</span><br>skip the<br>line.</h1>
+    <p class="hero-sub">Thin-smashed, double-stacked, off the flat-top in under four minutes. Order ahead and walk straight to pickup.</p>
+    <div class="hero-actions">
+      <a href="order.html" class="btn-primary">Order ahead</a>
+      <a href="menu.html" class="btn-ghost">See the menu</a>
+    </div>
+  </div>
+
+  <div class="burger-stage">
+    <div class="glow"></div>
+    <div class="burger-float">
+      <div class="burger" id="burger">
+        <div class="bun-top"><div id="seedHolder"></div></div>
+        <div class="lettuce"></div>
+        <div class="cheese"></div>
+        <div class="patty"></div>
+        <div class="bun-bottom"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="banner">
+  <div class="banner-track">
+    <span>Double smash &mdash; $7.50</span>
+    <span>Crispy edges, every patty</span>
+    <span>Pickup in 4 minutes</span>
+    <span>Double smash &mdash; $7.50</span>
+    <span>Crispy edges, every patty</span>
+    <span>Pickup in 4 minutes</span>
+  </div>
+</div>
+
+<section>
+  <div class="teaser">
+    <div class="teaser-item">
+      <h3>Four items, done right</h3>
+      <p>We'd rather perfect a short menu than do a long one halfway.</p>
+      <a href="menu.html" class="btn-ghost">View menu</a>
+    </div>
+    <div class="teaser-item">
+      <h3>214 Foundry St</h3>
+      <p>Riverside District, next to the old mill. Open Mon&ndash;Sat.</p>
+      <a href="location.html" class="btn-ghost">Get directions</a>
+    </div>
+    <div class="teaser-item">
+      <h3>Skip the counter</h3>
+      <p>Order ahead and walk straight to pickup, no waiting in line.</p>
+      <a href="order.html" class="btn-ghost">Order now</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-block">
+  <h2 class="display">Hungry<br>yet?</h2>
+  <a href="order.html" class="btn-primary">Start your order</a>
+</section>
+
+<footer>
+  <div>&copy; Charwood Smash. All rights reserved.</div>
+  <div>Sample site built by BluePeak Digital</div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    navToggle.innerHTML = isOpen ? '&times;' : '&#9776;';
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.innerHTML = '&#9776;';
+  }));
+
+  const seedHolder = document.getElementById('seedHolder');
+  const seedPositions = [[40,18],[70,12],[100,22],[130,15],[160,25],[190,14],[220,20],[250,16],[55,32],[95,36],[140,34],[180,38],[215,32]];
+  seedPositions.forEach(([x,y])=>{
+    const s = document.createElement('div');
+    s.className='seed';
+    s.style.position='absolute';
+    s.style.left=x+'px';
+    s.style.top=y+'px';
+    seedHolder.appendChild(s);
+  });
+
+  const burger = document.getElementById('burger');
+  const burgerStage = document.querySelector('.burger-stage');
+  if (window.matchMedia('(hover: hover)').matches && burgerStage) {
+    let ticking = false;
+    let lastX = 0, lastY = 0;
+    burgerStage.addEventListener('mousemove', (e)=>{
+      const rect = burgerStage.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width - 0.5;
+      const relY = (e.clientY - rect.top) / rect.height - 0.5;
+      lastX = relX * 18;
+      lastY = relY * -10;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(()=>{
+          burger.style.transform = `rotateX(${28+lastY}deg) rotateZ(${lastX}deg)`;
+          ticking = false;
+        });
+      }
+    });
+    burgerStage.addEventListener('mouseleave', ()=>{
+      burger.style.transform = 'rotateX(28deg) rotateZ(0deg)';
+    });
+  }
+</script>
+
+</body>
+</html>
