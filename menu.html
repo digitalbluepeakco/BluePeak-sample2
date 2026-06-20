@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu &mdash; Charwood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .menu-item{ background:var(--bg); padding:32px 28px; transition:background 0.2s; }
+  .menu-item:hover{ background:var(--bg-2); }
+  .menu-item .tag{ font-size:12px; font-weight:700; color:var(--char); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; display:block; }
+  .menu-item h3{ font-size:21px; font-weight:700; margin-bottom:8px; }
+  .menu-item p{ font-size:14px; color:var(--cream-dim); line-height:1.55; margin-bottom:18px; }
+  .menu-item .price{ font-size:18px; font-weight:700; color:var(--mustard); }
+  @media (max-width:900px){ .menu-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .menu-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">CHAR<span>WOOD</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" class="">Home</a>
+    <a href="menu.html" class="active">Menu</a>
+    <a href="location.html" class="">Location</a>
+    <a href="order.html" class="">Order</a>
+    <a href="order.html" class="nav-cta-mobile">Order now</a>
+  </div>
+  <a href="order.html" class="nav-cta">Order now</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+</nav>
+
+<section class="page-hero">
+  <div class="eyebrow">The full lineup</div>
+  <h1 class="display">Four items.<br>Done right.</h1>
+  <p>Each one smashed thin on a screaming-hot flat-top so the edges char before the center finishes. That's the whole menu &mdash; we'd rather do four things well.</p>
+</section>
+
+<section style="padding-top:0;">
+  <div class="menu-grid">
+    <div class="menu-item">
+      <span class="tag">Signature</span>
+      <h3>The Charwood Double</h3>
+      <p>Two smashed patties, American cheese, pickles, onion, Charwood sauce on a toasted bun.</p>
+      <div class="price">$7.50</div>
+    </div>
+    <div class="menu-item">
+      <span class="tag">Spicy</span>
+      <h3>Ghost Smash</h3>
+      <p>Single patty, pepper jack, fried jalapeños, chipotle aioli, slaw.</p>
+      <div class="price">$6.25</div>
+    </div>
+    <div class="menu-item">
+      <span class="tag">Sides</span>
+      <h3>Crispy Edge Fries</h3>
+      <p>Hand-cut, double-fried, tossed in smoked salt.</p>
+      <div class="price">$3.75</div>
+    </div>
+    <div class="menu-item">
+      <span class="tag">No beef</span>
+      <h3>Smash Veggie</h3>
+      <p>House black bean patty, smashed the same way, same char, same sauce.</p>
+      <div class="price">$6.75</div>
+    </div>
+    <div class="menu-item">
+      <span class="tag">Drinks</span>
+      <h3>Hand-Spun Shakes</h3>
+      <p>Vanilla, chocolate, or salted caramel. Made to order, no machine mix.</p>
+      <div class="price">$4.50</div>
+    </div>
+    <div class="menu-item">
+      <span class="tag">Combo</span>
+      <h3>The Whole Smash</h3>
+      <p>Charwood Double, fries, and a shake. The one most people order.</p>
+      <div class="price">$13.95</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-block" style="text-align:center; border-top:1px solid var(--line);">
+  <h2 class="display" style="font-size:clamp(34px,6vw,64px); margin-bottom:28px;">Ready to order?</h2>
+  <a href="order.html" class="btn-primary">Start your order</a>
+</section>
+
+<footer>
+  <div>&copy; Charwood Smash. All rights reserved.</div>
+  <div>Sample site built by BluePeak Digital</div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    navToggle.innerHTML = isOpen ? '&times;' : '&#9776;';
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.innerHTML = '&#9776;';
+  }));
+</script>
+
+</body>
+</html>

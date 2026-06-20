@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order &mdash; Charwood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .order-options{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding-top:0; }
+  .order-card{
+    background:var(--bg-2); border:1px solid var(--line); border-radius:8px;
+    padding:28px 24px; display:flex; flex-direction:column; gap:14px;
+  }
+  .order-card .icon{
+    width:44px; height:44px; border-radius:50%; background:var(--char);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .order-card h3{ font-size:19px; font-weight:700; }
+  .order-card p{ font-size:14px; color:var(--cream-dim); line-height:1.55; flex:1; }
+  @media (max-width:760px){ .order-options{ grid-template-columns:1fr; } }
+
+  .call-row{
+    display:flex; align-items:center; justify-content:space-between;
+    background:var(--bg-2); border:1px solid var(--line); border-radius:8px;
+    padding:24px 28px; margin-top:32px; gap:16px; flex-wrap:wrap;
+  }
+  .call-row .phone{ font-size:24px; font-weight:700; font-family:'Anton',sans-serif; letter-spacing:0.02em; }
+  .call-row p{ color:var(--cream-dim); font-size:14px; margin-top:4px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">CHAR<span>WOOD</span></a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" class="">Home</a>
+    <a href="menu.html" class="">Menu</a>
+    <a href="location.html" class="">Location</a>
+    <a href="order.html" class="active">Order</a>
+    <a href="order.html" class="nav-cta-mobile">Order now</a>
+  </div>
+  <a href="order.html" class="nav-cta">Order now</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+</nav>
+
+<section class="page-hero">
+  <div class="eyebrow">Get your order in</div>
+  <h1 class="display">Pick it up.<br>Skip the line.</h1>
+  <p>Order ahead for pickup, get it delivered, or call it in directly. Ready in under four minutes once it hits the flat-top.</p>
+</section>
+
+<section class="order-options">
+  <div class="order-card">
+    <div class="icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1714" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+    </div>
+    <h3>Pickup</h3>
+    <p>Order ahead online and walk straight to the counter, no waiting required.</p>
+    <a href="#" class="btn-primary">Order for pickup</a>
+  </div>
+  <div class="order-card">
+    <div class="icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1714" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v8H3z"/><path d="M14 11h4l3 3v1h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+    </div>
+    <h3>Delivery</h3>
+    <p>Delivered within 3 miles of Riverside District through our app.</p>
+    <a href="#" class="btn-primary">Order delivery</a>
+  </div>
+  <div class="order-card">
+    <div class="icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1714" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.97.34 1.92.62 2.84a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.92.28 1.87.49 2.84.62A2 2 0 0 1 22 16.92z"/></svg>
+    </div>
+    <h3>Call it in</h3>
+    <p>Prefer to talk to someone? Call the counter directly, tap below on mobile.</p>
+    <a href="tel:+15551234567" class="btn-primary">Call (555) 123-4567</a>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="call-row">
+    <div>
+      <div class="phone">(555) 123-4567</div>
+      <p>Tap to call from your phone, or use it for large orders and catering.</p>
+    </div>
+    <a href="tel:+15551234567" class="btn-ghost">Call now</a>
+  </div>
+</section>
+
+<footer>
+  <div>&copy; Charwood Smash. All rights reserved.</div>
+  <div>Sample site built by BluePeak Digital</div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    navToggle.innerHTML = isOpen ? '&times;' : '&#9776;';
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.innerHTML = '&#9776;';
+  }));
+</script>
+
+</body>
+</html>
